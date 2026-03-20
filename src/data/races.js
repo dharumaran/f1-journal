@@ -1,0 +1,25 @@
+export const races = [
+    { id: 1, name: "Australian GP", date: "Mar 6-8" },
+    { id: 2, name: "Chinese GP", date: "Mar 13-15" },
+    { id: 3, name: "Japanese GP", date: "Mar 27-29" },
+    // Bahrain and Saudi Arabia removed due to cancellation
+    { id: 4, name: "Miami GP", date: "May 1-3" },
+    { id: 5, name: "Canadian GP", date: "May 22-24" },
+    { id: 6, name: "Monaco GP", date: "Jun 5-7" },
+    { id: 7, name: "Spanish GP (Barcelona)", date: "Jun 12-14" },
+    { id: 8, name: "Austrian GP", date: "Jun 26-28" },
+    { id: 9, name: "British GP", date: "Jul 3-5" },
+    { id: 10, name: "Belgian GP", date: "Jul 17-19" },
+    { id: 11, name: "Hungarian GP", date: "Jul 24-26" },
+    { id: 12, name: "Dutch GP", date: "Aug 21-23" },
+    { id: 13, name: "Italian GP (Monza)", date: "Sep 4-6" },
+    { id: 14, name: "Spanish GP (Madrid)", date: "Sep 11-13" },
+    { id: 15, name: "Azerbaijan GP", date: "Sep 24-26" },
+    { id: 16, name: "Singapore GP", date: "Oct 9-11" },
+    { id: 17, name: "United States GP (Austin)", date: "Oct 23-25" },
+    { id: 18, name: "Mexico City GP", date: "Oct 30-Nov 1" },
+    { id: 19, name: "São Paulo GP", date: "Nov 6-8" },
+    { id: 20, name: "Las Vegas GP", date: "Nov 19-21" },
+    { id: 21, name: "Qatar GP", date: "Nov 27-29" },
+    { id: 22, name: "Abu Dhabi GP", date: "Dec 4-6" }
+  ];
