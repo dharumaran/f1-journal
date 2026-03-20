@@ -76,7 +76,7 @@ src/
 ### 1. Clone the repository
 
 ```
-git clone https://github.com/your-username/f1-dashboard.git
+git clone https://github.com/dharumaran/f1-journal.git
 cd f1-dashboard
 ```
 
