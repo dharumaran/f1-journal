@@ -1,70 +1,183 @@
-# Getting Started with Create React App
+# 🏎️ F1 Dashboard — Interactive Race Analytics
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p align="center">
+  <img src="https://img.shields.io/badge/Status-Active-red?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/React-App-blue?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Data-2026 Season-black?style=for-the-badge" />
+</p>
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## Overview
 
-### `npm start`
+An interactive Formula 1 dashboard built to visualize race results, driver standings, and constructor performance for the **2026 season**.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Designed with a focus on:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+* Clean UI
+* Dynamic navigation
+* Real-time race insights
+* Expandable architecture for future features
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Features
 
-### `npm run build`
+### Core Functionality
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* Race calendar with navigation
+* Driver and constructor standings
+* Points calculation system (race + sprint)
+* Individual race result views
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### UI / UX Enhancements
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* Hover-based interactions (minimal clutter)
+* Conditional rendering (only show what matters)
+* Responsive layout
 
-### `npm run eject`
+### Data Handling
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+* Structured race data mapping
+* Modular stat calculation logic
+* Scalable for additional seasons
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Project Structure
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```
+src/
+│
+├── components/
+│   ├── Navbar.jsx
+│   ├── RaceCard.jsx
+│
+├── pages/
+│   ├── Home.jsx
+│   ├── RaceDetails.jsx
+│   ├── Standings.jsx
+│
+├── data/
+│   ├── races.js
+│   ├── drivers.js
+│   ├── constructors.js
+│
+├── utils/
+│   ├── calculateStats.js
+│
+└── App.jsx
+```
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Getting Started
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### 1. Clone the repository
 
-### Code Splitting
+```
+git clone https://github.com/your-username/f1-dashboard.git
+cd f1-dashboard
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### 2. Install dependencies
 
-### Analyzing the Bundle Size
+```
+npm install
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### 3. Run the app
 
-### Making a Progressive Web App
+```
+npm run dev
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+---
 
-### Advanced Configuration
+## How It Works
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+<details>
+<summary><strong>Points System Logic</strong></summary>
 
-### Deployment
+* Top 10 finishers get points:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```
+25, 18, 15, 12, 10, 8, 6, 4, 2, 1
+```
 
-### `npm run build` fails to minify
+* Sprint races handled separately (if enabled)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+* No fastest lap bonus (removed for accuracy)
+
+</details>
+
+<details>
+<summary><strong>Navigation Flow</strong></summary>
+
+* Home → Race List
+* Click race → Race Details
+* Standings → Aggregated stats
+
+</details>
+
+<details>
+<summary><strong>State Management</strong></summary>
+
+* Local state via React hooks
+* Derived stats computed dynamically
+* No external state library used
+
+</details>
+
+---
+
+## Screens (Conceptual)
+
+* Home → Race overview
+* Race Page → Results + winner highlight (hover reveal)
+* Standings → Leaderboard
+
+---
+
+## Future Improvements
+
+* Constructor vs Driver comparison view
+* Race pace visualization (charts)
+* Dark/light theme toggle
+* API integration for live data
+* Chrome extension version (planned)
+
+---
+
+## Tech Stack
+
+* React
+* React Router
+* JavaScript (ES6+)
+* CSS / Tailwind (if used)
+
+---
+
+## Design Philosophy
+
+* Show less by default, reveal on interaction
+* Prioritize clarity over density
+* Keep logic modular and reusable
+
+---
+
+## Contributing
+
+Pull requests are welcome. For major changes, open an issue first.
+
+---
+
+## License
+
+This project is for educational and personal use.
+
+---
+
+<p align="center">
+  Built with precision for Formula 1 fans.
+</p>
