@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { drivers } from "../data/drivers";
 import { races } from "../data/races";
 import { calculateDriverStats } from "../utils/calculateStats";
@@ -6,6 +6,7 @@ import { constructors } from "../data/constructors";
 
 function DriverDetails() {
   const { id } = useParams();
+  const navigate = useNavigate(); // ✅ added
 
   const driver = drivers.find((d) => d.id === parseInt(id));
   if (!driver) return <p>Driver not found</p>;
@@ -93,9 +94,20 @@ function DriverDetails() {
             <div
               key={race.id}
               className="card"
+              onClick={() => navigate(`/race/${race.id}`)} // ✅ navigation added
               style={{
                 display: "flex",
                 justifyContent: "space-between",
+                cursor: "pointer", // ✅ makes it obvious
+                transition: "0.2s",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.border = `1px solid ${team?.color}`;
+                e.currentTarget.style.transform = "scale(1.02)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.border = "1px solid transparent";
+                e.currentTarget.style.transform = "scale(1)";
               }}
             >
               <span>{race.name}</span>

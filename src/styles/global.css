@@ -153,3 +153,10 @@ textarea {
   opacity: 1;
   transform: translateY(0);
 }
+.card {
+  transition: 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+}

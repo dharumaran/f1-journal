@@ -12,10 +12,16 @@ function ConstructorDetails() {
 
   const driverStats = calculateDriverStats(drivers, races);
 
+  // ✅ safer + consistent driver selection
   const teamDrivers = drivers.filter((d) => d.team === team.name);
 
-  const d1 = teamDrivers[0];
-  const d2 = teamDrivers[1];
+  const sortedDrivers = [...teamDrivers].sort(
+    (a, b) =>
+      (driverStats[b.name]?.points || 0) -
+      (driverStats[a.name]?.points || 0)
+  );
+
+  const [d1, d2] = sortedDrivers;
 
   const d1Points = driverStats[d1?.name]?.points || 0;
   const d2Points = driverStats[d2?.name]?.points || 0;
@@ -29,7 +35,6 @@ function ConstructorDetails() {
 
   return (
     <div className="page">
-
       {/* 🔥 HEADER */}
       <div
         className="card"
@@ -49,11 +54,69 @@ function ConstructorDetails() {
         )}
       </div>
 
+      {/* ⚔️ DRIVER BATTLE (CHART) */}
+      <div
+        className="card"
+        style={{
+          marginTop: "20px",
+          border: `1px solid ${team.color}`,
+        }}
+      >
+        <h3>Team Battle</h3>
+
+        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+          <span style={{ width: "80px" }}>{d1?.name}</span>
+
+          <div
+            style={{
+              flex: 1,
+              height: "10px",
+              background: "#222",
+              borderRadius: "10px",
+              overflow: "hidden",
+              display: "flex",
+            }}
+          >
+            <div
+              style={{
+                width: `${totalPoints ? (d1Points / totalPoints) * 100 : 0}%`,
+                background: team.color,
+                transition: "0.5s",
+              }}
+            />
+            <div
+              style={{
+                width: `${totalPoints ? (d2Points / totalPoints) * 100 : 0}%`,
+                background: "#555",
+                transition: "0.5s",
+              }}
+            />
+          </div>
+
+          <span style={{ width: "80px", textAlign: "right" }}>
+            {d2?.name}
+          </span>
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            marginTop: "8px",
+            fontSize: "14px",
+            opacity: 0.8,
+          }}
+        >
+          <span>{d1Points} pts</span>
+          <span>{d2Points} pts</span>
+        </div>
+      </div>
+
       {/* 📊 DRIVER CONTRIBUTION */}
       <h3 style={{ marginTop: "20px" }}>Driver Contribution</h3>
 
       <div className="grid" style={{ gridTemplateColumns: "1fr 1fr" }}>
-        {teamDrivers.map((driver) => {
+        {sortedDrivers.map((driver) => {
           const stats = driverStats[driver.name] || {};
           const pts = stats.points || 0;
 
@@ -69,12 +132,20 @@ function ConstructorDetails() {
               key={driver.id}
               className="card"
               style={{
-                border: isLeader ? "2px solid gold" : "",
+                border: isLeader
+                  ? "2px solid gold"
+                  : "1px solid #222",
+                background: isLeader
+                  ? "rgba(255,215,0,0.05)"
+                  : "",
+                transition: "0.2s",
               }}
             >
               <h3>{driver.name}</h3>
               <p>{pts} pts</p>
-              <p style={{ opacity: 0.7 }}>{percent}% contribution</p>
+              <p style={{ opacity: 0.7 }}>
+                {percent}% contribution
+              </p>
 
               {isLeader && <p>🥇 Lead Driver</p>}
             </div>
@@ -82,12 +153,14 @@ function ConstructorDetails() {
         })}
       </div>
 
-      {/* 🏁 RACE BREAKDOWN (PER DRIVER) */}
+      {/* 🏁 RACE BREAKDOWN */}
       <h3 style={{ marginTop: "30px" }}>Race Contributions</h3>
 
       <div className="grid" style={{ gridTemplateColumns: "1fr" }}>
         {races.map((race) => {
-          const saved = JSON.parse(localStorage.getItem(`race-${race.id}`));
+          const saved = JSON.parse(
+            localStorage.getItem(`race-${race.id}`) || "null"
+          );
 
           let d1Pts = 0;
           let d2Pts = 0;
@@ -115,12 +188,22 @@ function ConstructorDetails() {
             >
               <strong>{race.name}</strong>
 
-              <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
+              >
                 <span>{d1?.name}</span>
                 <span>{d1Pts} pts</span>
               </div>
 
-              <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
+              >
                 <span>{d2?.name}</span>
                 <span>{d2Pts} pts</span>
               </div>
